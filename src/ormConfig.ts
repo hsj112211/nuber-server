@@ -1,7 +1,7 @@
 import { ConnectionOptions } from "typeorm";
 const connectionOptions: ConnectionOptions = {
   type: "postgres",
-  database: "nuber",
+  database: "nuberman",
   synchronize: true,
   logging: true,
   entities: ["entities/**/*.*"],

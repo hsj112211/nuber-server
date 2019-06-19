@@ -2,22 +2,64 @@
 
 Server for the (N)Uber Clone Course on Nomad Academy, GraphQL , Typescript , NodeJS
 
-# Issue
+## 1. Features
 
-- 프로젝트 셋업시 발생한 이슈사항
+### Public Resolvers:
 
-  1.  schema.ts 작성 시 graphql-tools / merge-graphql-schemas의 버전이 맞지 않아서 에러발생
-      -- graphql-tools@3.0.4
-      -- graphql-yoga@1.14.10
-      -- merge-graphql-schemas@1.5.2
-      재 설치 후 allResolvers의 타입을 IResolversp[] 로 변경하여 해결
+- [x] Sign In / Sign Up with Facebook
+- [x] Sign In with Email
+- [ ] Start Phone Number Verification
+- [ ] Complete Phone Number Verification
+- [ ] Sign Up with Email
 
-- postgresql 설치 시 발생 에러
+---
 
-1. 11버전 , 10버전 다운로드 후 인스톨 시점에 there has been an error, Unable to write inside TEMP enviroment variable path 에러 발생
-   해결방안 찾는중 .
+### Private Resolvers:
 
-# Reference
+- [ ] Generate JWT
+- [ ] Verify JWT
+- [ ] Verify Email
+- [ ] Get my Profile
+- [ ] Update my Profile
+- [ ] Toggle Driving Mode
+- [ ] Report location / Orientation
+- [ ] Add Place
+- [ ] Edit Place
+- [ ] Delete Place
+- [ ] See Nearby Drivers
+- [ ] Subcribe to Nearby Drivers
+- [ ] Request a Ride
+- [ ] Get Nearby Ride Request
+- [ ] Subscribe to Nearby Ride Request
+- [ ] Subscribe to Ride Status
+- [ ] Get Chat Room Messages
+- [ ] Subscribe to Chat Room Messages
+- [ ] Send a Chat Message
+
+## Code Challenge
+
+- [ ] Get Ride History
+- [ ] See Ride Detail
+
+## 2. Issue
+
+## 프로젝트 셋업시 발생한 이슈사항
+
+- schema.ts 작성 시 graphql-tools / merge-graphql-schemas의 버전이 맞지 않아서 에러발생
+- graphql-tools@3.0.4
+- graphql-yoga@1.14.10
+- merge-graphql-schemas@1.5.2
+- 재 설치 후 allResolvers의 타입을 IResolversp[] 로 변경하여 해결
+
+## postgresql 설치 시 발생 에러
+
+- 11버전 , 10버전 다운로드 후 인스톨 시점에 there has been an error, Unable to write inside TEMP enviroment variable path 에러 발생
+  해결방안 찾는중 .
+- docker 프로그램 설치하여 postgres 다운 및 설정으로 해결
+
+---
+
+## 3. Reference
 
 - package.json
 

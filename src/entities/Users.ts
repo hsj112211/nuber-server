@@ -15,7 +15,6 @@ import {
 import Chat from "./Chat";
 import Message from "./Message";
 import Ride from "./Ride";
-import Verification from "./Verification";
 
 const BCRYPT_ROUND = 10;
 
@@ -79,9 +78,6 @@ class Users extends BaseEntity {
 
   @OneToMany(Type => Message, message => message.users)
   messages: Message[];
-
-  @OneToMany(type => Verification, verification => verification.users)
-  verifications: Verification[];
 
   @OneToMany(type => Ride, ride => ride.passenger)
   rideAsPassenger: Ride[];
