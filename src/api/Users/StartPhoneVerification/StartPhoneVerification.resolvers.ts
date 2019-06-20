@@ -1,17 +1,11 @@
+import { StartPhoneVerificationMutationArgs, StartPhoneVerificationResponse } from "src/types/graph";
 import { Resolvers } from "src/types/resolvers";
-import {
-  StartPhoneVerificationMutationArgs,
-  StartPhoneVerificationResponse
-} from "src/types/graph";
 import Verification from "../../../entities/Verification";
 import { sendVerificationSMS } from "../../../utils/sendSMS";
 
 const resolvers: Resolvers = {
   Mutation: {
-    StartPhoneVerification: async (
-      _,
-      args: StartPhoneVerificationMutationArgs
-    ): Promise<StartPhoneVerificationResponse> => {
+    StartPhoneVerification: async (_, args: StartPhoneVerificationMutationArgs): Promise<StartPhoneVerificationResponse> => {
       const { phoneNumber } = args;
       try {
         const existingVerification = await Verification.findOne({
@@ -24,7 +18,6 @@ const resolvers: Resolvers = {
           payload: phoneNumber,
           target: "PHONE"
         }).save();
-        console.log(newVerification);
         await sendVerificationSMS(newVerification.payload, newVerification.key);
         return {
           ok: true,

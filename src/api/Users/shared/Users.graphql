@@ -23,7 +23,3 @@ type Users {
   createdAt: String!
   updatedAt: String
 }
-
-type Query {
-  users: Users
-}
