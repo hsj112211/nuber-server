@@ -24,13 +24,15 @@ Server for the (N)Uber Clone Course on Nomad Academy, GraphQL , Typescript , Nod
 ### Private Resolvers:
 
 - [x] Get my Profile
-- [ ] Verify Email
-- [ ] Update my Profile
-- [ ] Toggle Driving Mode
-- [ ] Report location / Orientation
-- [ ] Add Place
-- [ ] Edit Place
-- [ ] Delete Place
+- [x] Request Email Vericiation
+- [x] Complete Email Vericiation
+- [x] Update my Profile
+- [x] Toggle Driving Mode
+- [x] Report location / Orientation
+- [x] Add Place
+- [x] Edit Place
+- [x] Delete Place
+- [ ] Get My Places
 - [ ] See Nearby Drivers
 - [ ] Subcribe to Nearby Drivers
 - [ ] Request a Ride

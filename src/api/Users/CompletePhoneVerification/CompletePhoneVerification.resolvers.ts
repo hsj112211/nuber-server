@@ -31,6 +31,7 @@ const resolvers: Resolvers = {
       }
       try {
         const users = await Users.findOne({ phoneNumber });
+
         if (users) {
           users.verifiedPhoneNumber = true;
           users.save();

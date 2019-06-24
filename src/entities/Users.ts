@@ -14,6 +14,7 @@ import {
 } from "typeorm";
 import Chat from "./Chat";
 import Message from "./Message";
+import Place from "./Place";
 import Ride from "./Ride";
 
 const BCRYPT_ROUND = 10;
@@ -73,6 +74,9 @@ class Users extends BaseEntity {
   @Column({ type: "text", nullable: true })
   fbId: string;
 
+  @OneToMany(type => Place, place => place.users)
+  places: Place[];
+
   @ManyToOne(Type => Chat, chat => chat.participants)
   chat: Chat;
 
@@ -83,7 +87,7 @@ class Users extends BaseEntity {
   rideAsPassenger: Ride[];
 
   @OneToMany(type => Ride, ride => ride.driver)
-  rideAsdriver: Ride[];
+  rideAsDriver: Ride[];
 
   @CreateDateColumn() createdAt: string;
   @UpdateDateColumn() updatedAt: string;

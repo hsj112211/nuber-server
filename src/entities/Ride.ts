@@ -38,7 +38,7 @@ class Ride extends BaseEntity {
   @ManyToOne(type => Users, users => users.rideAsPassenger)
   passenger: Users;
 
-  @ManyToOne(type => Users, users => users.rideAsdriver)
+  @ManyToOne(type => Users, users => users.rideAsDriver)
   driver: Users;
 
   @CreateDateColumn() createdAt: string;
