@@ -82,7 +82,7 @@ type Ride {
   price: Float!
   distance: String!
   duration: String!
-  dirver: Users!
+  driver: Users!
   passenger: Users!
   createdAt: String!
   updatedAt: String

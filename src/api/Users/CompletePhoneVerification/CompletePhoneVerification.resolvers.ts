@@ -1,11 +1,17 @@
-import { CompletePhoneVerificationMutationArgs, CompletePhoneVerificationResponse } from "src/types/graph";
+import {
+  CompletePhoneVerificationMutationArgs,
+  CompletePhoneVerificationResponse
+} from "src/types/graph";
 import { Resolvers } from "src/types/resolvers";
 import Users from "../../../entities/Users";
 import Verification from "../../../entities/Verification";
 import createJWT from "../../../utils/createJWT";
 const resolvers: Resolvers = {
   Mutation: {
-    CompletePhoneVerification: async (_, args: CompletePhoneVerificationMutationArgs): Promise<CompletePhoneVerificationResponse> => {
+    CompletePhoneVerification: async (
+      _,
+      args: CompletePhoneVerificationMutationArgs
+    ): Promise<CompletePhoneVerificationResponse> => {
       const { phoneNumber, key } = args;
       try {
         const verification = await Verification.findOne({
@@ -31,7 +37,6 @@ const resolvers: Resolvers = {
       }
       try {
         const users = await Users.findOne({ phoneNumber });
-
         if (users) {
           users.verifiedPhoneNumber = true;
           users.save();

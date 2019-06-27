@@ -1,4 +1,7 @@
-import { CompleteEmailVerificationMutationArgs, CompleteEmailVerificationResponse } from "src/types/graph";
+import {
+  CompleteEmailVerificationMutationArgs,
+  CompleteEmailVerificationResponse
+} from "src/types/graph";
 import { Resolvers } from "src/types/resolvers";
 import Users from "../../../entities/Users";
 import Verification from "../../../entities/Verification";
@@ -7,10 +10,14 @@ import privateResolver from "../../../utils/privateResolver";
 const resolvers: Resolvers = {
   Mutation: {
     CompleteEmailVerification: privateResolver(
-      async (_, args: CompleteEmailVerificationMutationArgs, { req }): Promise<CompleteEmailVerificationResponse> => {
+      async (
+        _,
+        args: CompleteEmailVerificationMutationArgs,
+        { req }
+      ): Promise<CompleteEmailVerificationResponse> => {
         const users: Users = req.users;
         const { key } = args;
-        if (users.email) {
+        if (users.email && !users.verifiedEmail) {
           try {
             const verification = await Verification.findOne({
               key,

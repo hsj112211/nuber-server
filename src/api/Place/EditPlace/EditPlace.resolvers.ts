@@ -7,14 +7,23 @@ import privateResolver from "../../../utils/privateResolver";
 const resolvers: Resolvers = {
   Mutation: {
     EditPlace: privateResolver(
-      async (_, args: EditPlaceMutationArgs, { req }): Promise<EditPlaceResponse> => {
-        console.log(args);
+      async (
+        _,
+        args: EditPlaceMutationArgs,
+        { req }
+      ): Promise<EditPlaceResponse> => {
         const users: Users = req.users;
         try {
-          const place = await Place.findOne({ id: args.placeId }, { relations: ["users"] });
+          const place = await Place.findOne(
+            { id: args.placeId },
+            { relations: ["users"] }
+          );
           if (place) {
             if (place.usersId === users.id) {
-              const notNull = cleanNullArgs(args);
+              const notNull: any = cleanNullArgs(args);
+              if (notNull.placeId !== null) {
+                delete notNull.placeId;
+              }
               await Place.update({ id: args.placeId }, { ...notNull });
               return {
                 ok: true,
