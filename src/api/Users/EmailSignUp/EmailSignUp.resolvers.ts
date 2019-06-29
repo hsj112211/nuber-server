@@ -6,7 +6,10 @@ import createJWT from "../../../utils/createJWT";
 import { sendVerificationEmail } from "../../../utils/sendEmail";
 const resolvers: Resolvers = {
   Mutation: {
-    EmailSignUp: async (_, args: EmailSignUpMutationArgs): Promise<EmailSignUpResponse> => {
+    EmailSignUp: async (
+      _,
+      args: EmailSignUpMutationArgs
+    ): Promise<EmailSignUpResponse> => {
       const { email } = args;
       try {
         const existingUsers = await Users.findOne({ email });
@@ -17,7 +20,10 @@ const resolvers: Resolvers = {
             token: null
           };
         } else {
-          const phoneVerification = await Verification.findOne({ payload: args.phoneNumber, verified: true });
+          const phoneVerification = await Verification.findOne({
+            payload: args.phoneNumber,
+            verified: true
+          });
           if (phoneVerification) {
             const newUsers = await Users.create({ ...args }).save();
             if (newUsers.email) {
@@ -25,7 +31,10 @@ const resolvers: Resolvers = {
                 payload: newUsers.email,
                 target: "EMAIL"
               }).save();
-              await sendVerificationEmail(newUsers.fullName, emailVerification.key);
+              await sendVerificationEmail(
+                newUsers.fullName,
+                emailVerification.key
+              );
             }
             const token = createJWT(newUsers.id);
             return {

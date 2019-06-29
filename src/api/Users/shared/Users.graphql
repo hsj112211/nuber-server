@@ -17,6 +17,9 @@ type Users {
   lastLat: Float
   lastOrientation: Float
   fbId: String
+  orientation: Float
+  lat: Float
+  lng: Float
   messages: [Message]
   rideAsPassenger: [Ride]
   rideAsDriver: [Ride]

@@ -10,6 +10,7 @@ const resolvers: Resolvers = {
     RequestEmailVericiation: privateResolver(
       async (_, __, { req }): Promise<RequestEmailVericiationResponse> => {
         const users: Users = req.users;
+        console.log(users);
         if (users.email && !users.verifiedEmail) {
           try {
             const oldVerification = await Verification.findOne({

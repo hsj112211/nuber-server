@@ -74,6 +74,15 @@ class Users extends BaseEntity {
   @Column({ type: "text", nullable: true })
   fbId: string;
 
+  @Column({ type: "double precision", nullable: true })
+  orientation: number;
+
+  @Column({ type: "double precision", nullable: true })
+  lat: number;
+
+  @Column({ type: "double precision", nullable: true })
+  lng: number;
+
   @OneToMany(type => Place, place => place.users)
   places: Place[];
 
