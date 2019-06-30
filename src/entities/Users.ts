@@ -34,10 +34,10 @@ class Users extends BaseEntity {
   @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   firstName: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   lastName: string;
 
   @Column({ type: "int", nullable: true })
@@ -52,7 +52,7 @@ class Users extends BaseEntity {
   @Column({ type: "boolean", default: false })
   verifiedPhoneNumber: boolean;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   profilePhoto: string;
 
   @Column({ type: "boolean", default: false })

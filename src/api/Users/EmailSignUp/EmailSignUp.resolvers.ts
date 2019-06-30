@@ -10,9 +10,17 @@ const resolvers: Resolvers = {
       _,
       args: EmailSignUpMutationArgs
     ): Promise<EmailSignUpResponse> => {
-      const { email } = args;
+      const {
+        firstName,
+        lastName,
+        email,
+        password,
+        profilePhoto,
+        age,
+        phoneNumber
+      } = args;
+      const existingUsers = await Users.findOne({ email });
       try {
-        const existingUsers = await Users.findOne({ email });
         if (existingUsers) {
           return {
             ok: false,
@@ -24,8 +32,21 @@ const resolvers: Resolvers = {
             payload: args.phoneNumber,
             verified: true
           });
+          const deleteUsers = await Users.findOne({ phoneNumber });
+          if (deleteUsers) {
+            deleteUsers.remove();
+          }
           if (phoneVerification) {
-            const newUsers = await Users.create({ ...args }).save();
+            const newUsers = await Users.create({
+              firstName,
+              lastName,
+              email,
+              password,
+              profilePhoto,
+              age,
+              phoneNumber,
+              verifiedPhoneNumber: true
+            }).save();
             if (newUsers.email) {
               const emailVerification = await Verification.create({
                 payload: newUsers.email,

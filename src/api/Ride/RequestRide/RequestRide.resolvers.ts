@@ -10,20 +10,34 @@ const resolvers: Resolvers = {
       async (
         _,
         args: RequestRideMutationArgs,
-        { req }
+        { req, pubSub }
       ): Promise<RequestRideResponse> => {
         const users: Users = req.users;
-        try {
-          const ride = await Ride.create({ ...args, passenger: users }).save();
-          return {
-            ok: true,
-            error: null,
-            ride
-          };
-        } catch (error) {
+        if (users.isRiding) {
+          try {
+            const ride = await Ride.create({
+              ...args,
+              passenger: users
+            }).save();
+            pubSub.publish("reideRequest", { NearbyRideSubScription: ride });
+            users.isRiding = true;
+            users.save();
+            return {
+              ok: true,
+              error: null,
+              ride
+            };
+          } catch (error) {
+            return {
+              ok: false,
+              error: error.message,
+              ride: null
+            };
+          }
+        } else {
           return {
             ok: false,
-            error: error.message,
+            error: "You can't request tow rides",
             ride: null
           };
         }
