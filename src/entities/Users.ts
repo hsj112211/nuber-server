@@ -110,8 +110,10 @@ class Users extends BaseEntity {
   @BeforeUpdate()
   async savePassword(): Promise<void> {
     if (this.password) {
+      console.log(this.password);
       const hashedPassword = await this.hashPassword(this.password);
       this.password = hashedPassword;
+      console.log(this.password);
     }
   }
 

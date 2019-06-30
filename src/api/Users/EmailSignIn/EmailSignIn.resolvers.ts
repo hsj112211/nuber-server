@@ -19,6 +19,7 @@ const resolvers: Resolvers = {
           };
         }
         const checkPassword = await users.comparePassword(password);
+        console.log(checkPassword);
         if (checkPassword) {
           const token = createJWT(users.id);
 
